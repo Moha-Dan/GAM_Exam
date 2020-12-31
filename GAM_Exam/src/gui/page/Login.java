@@ -18,12 +18,17 @@ public class Login extends Panel<VBox>{
 	private PassField password;
 	private Text errormsg;
 	private Button submit;
+	private String errormsgvalue = "";
 	public Login(String name){
 		this(name,null);
 	}
 	public Login(String name,EventHandler<ActionEvent> onclick){
 		super(new VBox(),name);
 		add(new Title("Connection"));
+		errormsg = new Text(errormsgvalue);
+		errormsg.setColor(Color.RED);
+		add(errormsg);
+		errormsg.setStyle("-fx-border-color:#f00;");
 		username = new TextField("Name2");
 		add(username);
 		password = new PassField("Name2");
@@ -35,6 +40,8 @@ public class Login extends Panel<VBox>{
 		add(submit);
 		layout.setAlignment(Pos.CENTER);
 		setAlignment(Pos.CENTER);
+		loaded = true;
+		
 	}
 
 	@Override
@@ -50,12 +57,10 @@ public class Login extends Panel<VBox>{
 		return password.getText();
 	}
 	public void setErrorMessage(String value) {
-		if(errormsg==null) {
-			errormsg = new Text(value);
-			errormsg.setColor(Color.RED);
-			add(errormsg);
-		}else {
-			errormsg.setText(value);
+		errormsgvalue = value;
+		if(loaded) {
+			System.out.println(errormsgvalue);
+			errormsg.setText(errormsgvalue);
 		}
 	}
 }
