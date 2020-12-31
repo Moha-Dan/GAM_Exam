@@ -19,6 +19,9 @@ public class Launcher {
 		Frame frame = new Frame("Xame");
 		Login login = new Login("login");
 		login.setErrorMessage("invalid");
+		login.setSubmitAction(event->{
+			System.out.println(login.getUsername());
+		});
 		List<TimeExamElement> diary = Arrays.asList(
 				new TimeExamElement("F 021","Français",LocalDateTime.of(2020, 12, 30, 12, 30),LocalTime.of(1, 30),null)
 				);

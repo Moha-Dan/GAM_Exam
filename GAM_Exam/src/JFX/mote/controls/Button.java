@@ -27,10 +27,13 @@ public class Button extends Component {
 		setMaxSize(App.width, 64);
 		btn.setStyle("-fx-background-radius:20;-fx-background-color:#4D8,#4D1;");
 		add(btn);
+		loaded =  true;
 	}
 	public void setOnclick(EventHandler<ActionEvent> onclick) {
 		this.onclick = onclick;
-		btn.setOnAction(onclick);
+		if(loaded) {
+			btn.setOnAction(onclick);
+		}
 	}
 }
 
