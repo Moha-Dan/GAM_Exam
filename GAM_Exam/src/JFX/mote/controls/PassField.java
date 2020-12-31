@@ -115,8 +115,12 @@ public class PassField extends Component{
 	public void setOnchange(EventHandler<? super KeyEvent> onchange) {
 		this.onchange = onchange;
 	}
+	/**
+	 * Sets the value of the property Content and get it. 
+	 * @param onchange
+	 */
 	public String getText() {
-		Content = pass.getText();
+		Content = visible?input.getText():pass.getText();
 		return Content;
 	}
 }
