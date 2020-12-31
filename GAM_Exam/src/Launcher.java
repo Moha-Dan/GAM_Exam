@@ -21,6 +21,7 @@ public class Launcher {
 		login.setErrorMessage("invalid");
 		login.setSubmitAction(event->{
 			System.out.println(login.getUsername());
+			System.out.println(login.getPassWord());
 		});
 		List<TimeExamElement> diary = Arrays.asList(
 				new TimeExamElement("F 021","Français",LocalDateTime.of(2020, 12, 30, 12, 30),LocalTime.of(1, 30),null)
