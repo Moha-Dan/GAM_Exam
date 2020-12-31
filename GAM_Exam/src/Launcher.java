@@ -17,16 +17,6 @@ public class Launcher {
 	public static void main(String[] args) {
 		System.out.println("app");
 		Frame frame = new Frame("Xame");
-		Application box = new Application() {
-			@Override
-			public void start(Stage arg0) throws Exception {
-			
-				
-			}
-		};
-		box.launch(box.getClass(),args);
-		frame.open();
-		/*
 		Login login = new Login("login");
 		login.setErrorMessage("invalid");
 		List<TimeExamElement> diary = Arrays.asList(
@@ -41,7 +31,6 @@ public class Launcher {
 		login.setNext("app");
 		frame.setPanel(login);
 		frame.show();
-		 */ 
 	}
 
 }

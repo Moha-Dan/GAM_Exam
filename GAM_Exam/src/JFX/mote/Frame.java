@@ -1,93 +1,51 @@
 package JFX.mote;
 
-import javax.swing.JFrame;
+import JFX.mote.layout.Panel;
 
-import JFX.mote.components.Title;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.Window;
-
-public class Frame{
-	private Layout content  = new Layout();
-	private Stage pop;
-	/**
-	 * 
-	 * @param name 
-	 */
-	public Frame(String name){
-		Frame.prepareJFX();
-		pop=new Stage(StageStyle.TRANSPARENT);
-		pop.initModality(Modality.APPLICATION_MODAL);
-		pop.setTitle(name);
-
-		VBox layout= new VBox();
-		content.setMode(Layout.DARKMODE);
-		content.setDisplay(LayoutDisplay.Column);
-		Rectangle rect = new Rectangle(App.width*.8, App.height*.8);
-		rect.setArcHeight(16);
-		rect.setArcWidth(16);
-		
-		BorderPane top = new BorderPane();
-		top.setStyle("-fx-background-color:#444;");
-		top.setMaxHeight(32);
-		top.setMinHeight(20);
-		top.setPadding(new Insets(2, 8, 0, 8));
-		
-		Circle close = new Circle(8);
-		close.setFill(Color.rgb(0xff,0x44,0));
-		close.setOnMouseClicked(event->{pop.close();});
-
-		top.setRight(close);
-	     
-		add(new Title(name));
-		content.init();
-		content.setMinSize(App.width*.8, App.height*.8);
-		content.setMaxSize(App.width*.8, App.height*.8);
-		content.setAlignment(Pos.TOP_CENTER);
-		
-		
-		layout.getChildren().addAll(top,content);   
-	     
-		layout.setClip(rect);
-		Scene sc= new Scene(layout, App.width*.8, App.height*.8);
-		sc.setFill(Color.TRANSPARENT);
-		
-		pop.initStyle(StageStyle.TRANSPARENT);
-	
-		pop.setScene(sc);    
+public class Frame {
+	public Frame(String title) {
+		super();
+		App.title = title;
+		App.setup();
 	}
-	private static void prepareJFX() {
-		
+	public Frame(String title,int Width,int Height) {
+		this(title);
+		App.height = Height;
+		App.width = Width;
 	}
 	/**
-	 * Add Comopnenet to the PopUp 
-	 * @param c
-	 * @see Component
+	 * Add the node in the App.
+	 * @param node
 	 */
-	public void add(Component c) {
-		content.add(c);
-		c.setStyle("-fx-border-color:#f00;");
+	public void add(Component node) {
+		App.content.add(node);
 	}
 	/**
-	 * Open PopUp
+	 * Show and Start the App.
 	 */
-	public void open() {
-		pop.showAndWait();
+	public void show() {
+		String[] args = {};
+		App.launch(App.class,args);
 	}
 	/**
-	 * Close PopUp
+	 * get the Tile of App 
+	 * @return title
 	 */
-	public void close() {
-		pop.close();
+	public String getTitle() {
+		return App.title;
+	}
+	/**
+	 * Get the App's Panel
+	 * @return Panel
+	 */
+	public Panel<?> getPane() {
+		return App.content;
+	}
+	/**
+	 * Set the Panel of App 
+	 * @param layout
+	 */
+	public void setPanel(Panel<?> layout) {
+		App.setPanel(layout);
 	}
 }
-
